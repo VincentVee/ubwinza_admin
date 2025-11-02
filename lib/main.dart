@@ -11,6 +11,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   ); // or with options for web
   runApp(const UbwinzaAdminApp());
+
 }
 
 
