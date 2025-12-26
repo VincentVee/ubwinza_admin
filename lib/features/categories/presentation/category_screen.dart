@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ubwinza_admin_dashboard/globalVars/global_vars.dart';
 import '../../../view/widgets/my_appbar.dart';
 import 'category_view_model.dart';
 
@@ -13,8 +14,10 @@ class CategoryScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => CategoryViewModel(),
       child: Scaffold(
-        backgroundColor: Colors.black,
-        appBar:  MyAppbar(titleMsg: 'Upload Category', showBackButton: true),
+        backgroundColor: screenBackgroundColor,
+        appBar:  MyAppbar(titleMsg: 'Upload Category', showBackButton: true,
+        ),
+
         body: const _CategoryBody(),
       ),
     );

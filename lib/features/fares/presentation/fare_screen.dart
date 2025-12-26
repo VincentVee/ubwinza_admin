@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ubwinza_admin_dashboard/core/models/fare_model.dart';
+import 'package:ubwinza_admin_dashboard/globalVars/global_vars.dart';
 import 'package:ubwinza_admin_dashboard/view/widgets/my_appbar.dart';
 import 'fare_view_model.dart';
 
@@ -12,7 +13,7 @@ class FareScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => FareViewModel(),
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: screenBackgroundColor,
         appBar: MyAppbar(titleMsg: 'Manage Fares', showBackButton: true),
         body: const Padding(
           padding: EdgeInsets.all(16),
@@ -74,7 +75,7 @@ class _AddFareFormState extends State<_AddFareForm> {
     return Form(
       key: _formKey,
       child: Card(
-        color: const Color(0xFF141414),
+        color: primaryColor,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -252,7 +253,7 @@ class _FareListItemState extends State<_FareListItem> {
     final fare = widget.fare;
 
     return Card(
-      color: const Color(0xFF141414),
+      color: primaryColor,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(

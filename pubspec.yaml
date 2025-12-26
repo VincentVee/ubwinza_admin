@@ -40,6 +40,7 @@ dependencies:
   firebase_storage:
   file_picker:
   provider:
+  fl_chart: ^0.66.0
 
 
 

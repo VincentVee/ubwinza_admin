@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ubwinza_admin_dashboard/globalVars/global_vars.dart';
 import 'package:ubwinza_admin_dashboard/view/widgets/my_appbar.dart';
 import 'banner_view_model.dart';
 
@@ -14,7 +15,7 @@ class BannerScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => BannerViewModel(),
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: screenBackgroundColor,
         appBar:  MyAppbar(titleMsg: 'Upload Banners', showBackButton: true),
         body: Padding(
           padding: const EdgeInsets.all(16),

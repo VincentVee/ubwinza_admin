@@ -1,54 +1,65 @@
-
+// lib/view/widgets/my_appbar.dart
 import 'package:flutter/material.dart';
-import 'package:ubwinza_admin_dashboard/view/main_screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ubwinza_admin_dashboard/features/auth/login_screen.dart';
+import 'package:ubwinza_admin_dashboard/globalVars/global_vars.dart';
 
 class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
-  String titleMsg;
-  bool showBackButton;
-  PreferredSizeWidget? bottom;
+  final String titleMsg;
+  final bool showBackButton;
+  final PreferredSizeWidget? bottom;
 
-  MyAppbar({super.key, required this.titleMsg, required this.showBackButton, this.bottom});
+  const MyAppbar({
+    super.key,
+    required this.titleMsg,
+    required this.showBackButton,
+    this.bottom,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
-      flexibleSpace: Container(
-        decoration:  BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.deepOrange,
-              Colors.purple
-            ],
-            begin: FractionalOffset(0.0, 0.0),
-            end: FractionalOffset(1.0, 0.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp,
-          )
-        ),
+      automaticallyImplyLeading: showBackButton,
+      backgroundColor: appbarColor,
+      elevation: 4,
+
+      title: Text(
+        titleMsg,
+        style: const TextStyle(color: Colors.white, fontSize: 20, letterSpacing: 1.5),
       ),
-      leading: showBackButton == true ?
-      IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-        onPressed: ()
-        {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-        },
-      ): Container(),
-      title: Center(
-        child: Text(
-          titleMsg,
-          style: TextStyle(
-            fontSize: 20,
-            letterSpacing: 3,
-            color: Colors.white
-          ),
-        ),
-      ),
+
+      actions: [
+        PopupMenuButton(
+
+          icon: const Icon(Icons.person, color: Colors.white),
+          color: primaryColor,
+          itemBuilder: (_) => [
+            const PopupMenuItem(
+              child: Text("Profile", style: TextStyle(color: Colors.white)),
+            ),
+            PopupMenuItem(
+              child: const Text("Logout", style: TextStyle(color: Colors.white)),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Future.delayed(
+                  Duration.zero,
+                  () => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    (_) => false,
+                  ),
+                );
+              },
+            ),
+          ],
+        )
+      ],
     );
   }
 
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => bottom == null ? Size(57, AppBar().preferredSize.height): Size(57, 80 +AppBar().preferredSize.height);
+  Size get preferredSize =>
+      bottom == null
+          ? const Size.fromHeight(kToolbarHeight)
+          : Size.fromHeight(kToolbarHeight + 60);
 }

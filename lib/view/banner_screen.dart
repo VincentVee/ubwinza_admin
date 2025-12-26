@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ubwinza_admin_dashboard/globalVars/global_vars.dart';
 import 'package:ubwinza_admin_dashboard/view/widgets/my_appbar.dart';
 
 class BannerScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _BannerScreenState extends State<BannerScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      backgroundColor: screenBackgroundColor,
       appBar: MyAppbar(titleMsg: "Upload Banners", showBackButton: true),
       body: SingleChildScrollView(
         child: Column(

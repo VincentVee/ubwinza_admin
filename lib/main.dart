@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ubwinza_admin_dashboard/features/auth/login_screen.dart';
+import 'package:ubwinza_admin_dashboard/view/auth_check_screen.dart';
 import 'package:ubwinza_admin_dashboard/view/main_screens/home_screen.dart';
 
 import 'firebase_options.dart';
@@ -23,7 +25,7 @@ class UbwinzaAdminApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ubwinza Admin',
       theme: ThemeData.dark(useMaterial3: true),
-      home: const HomeScreen(),
+      home: const AuthCheckScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
